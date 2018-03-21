@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   def index
-    @task = Task.all
+    @tasks = Task.all
   end
 
   def new
@@ -9,13 +9,21 @@ class TasksController < ApplicationController
   end
 
   def create
-    Task.create(task_params)
-    redirect_to tasks_path
+    @task = Task.new(task_params)
+    @task.save
+    redirect_to root_path
   end
 
   def update
     @task = Task.find(params[:name])
     @task.update(task_params)
+    redirect_to tasks_path
+  end
+
+  def complete
+    @task = tasks.find(params[:id])
+    @task.completed = true
+    @task.save
     redirect_to tasks_path
   end
 

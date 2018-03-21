@@ -1,18 +1,31 @@
-<h1>here are all your tasks</h1>
 
-  <% @task.each do |task| %>
-    <p><%= task.description  %></p>
-    <p><%= task.status  %></p>
-  <%end%>
+<div class="wrapper">
+  <h1> To-do list </h1>
+  <div class="container with-border">
+    <h2> To be done </h2>
+    <% @tasks.each do |task| %>
+      <div class="col">
+        <ul>
+          <li class="with-border push-top"><%= task.description %></li>
+          <li><%= link_to "Complete", tasks_path(task), class: "btn btn-large btn-primary push-top" %></li>
+        </ul>
+      </div>
+    <%end%>
 
-  <form action="/tasks" method="post">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= form_for :task, url: tasks_path do |f| %>
+      <%= f.text_field :description, class: "text_field" %>
+      <%= f.submit "Add new task", class: "btn btn-large btn-secondary" %>
+    <%end%>
+  </div>
 
-    <label for="description">Description: </label>
-    <input type="text" name="task[description]" id="description">
-
-    <label for="complete"> Complete </label>
-    <input type="checkbox" value="true" id="checkbox">
-
-    <input type="submit">
-  </form>
+  <div class="container with-border crossed-out">
+    <h2>Completed tasks</h2>
+    <% @tasks.complete.each do |task| %>
+      <div class="col">
+        <ul>
+          <li class="with-border"><%= task.description %></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>

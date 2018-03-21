@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'tasks/:name', to: "tasks#edit"
   patch "tasks/:name", to: "tasks#update"
 
+  post 'tasks/complete', to: 'tasks#complete' 
   root to: 'tasks#index'
 
 
