@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   get 'tasks', to: 'tasks#index'
+
+  get 'tasks', to: 'tasks#new'
+  post 'tasks', to: 'tasks#create'
+
+  get 'tasks/:name', to: "tasks#edit"
+  patch "tasks/:name", to: "tasks#update"
+
   root to: 'tasks#index'
 
 

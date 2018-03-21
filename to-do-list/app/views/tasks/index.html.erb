@@ -1,4 +1,18 @@
 <h1>here are all your tasks</h1>
-<div class= "index-banner">
-  <h1> All Tasks </h1>
-</div>
+
+  <% @task.each do |task| %>
+    <p><%= task.description  %></p>
+    <p><%= task.status  %></p>
+  <%end%>
+
+  <form action="/tasks" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+    <label for="description">Description: </label>
+    <input type="text" name="task[description]" id="description">
+
+    <label for="complete"> Complete </label>
+    <input type="checkbox" value="true" id="checkbox">
+
+    <input type="submit">
+  </form>
