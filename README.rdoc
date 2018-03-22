@@ -1,8 +1,18 @@
 In your terminal please go to your projects directory and clone the project:
 
-cd ~/Documents/Projects/
-git clone git@github.com:sophiedermaux/to-do-list.git
+`git clone git@github.com:sophiedermaux/to-do-list.git`
+
+Install Dependencies:
+```
+bundle install
+```
 
 You can run the test by:
-
+```
 bundle exec rspec
+```
+
+Run the server by:
+```
+bundle exec rails s
+```
